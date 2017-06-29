@@ -24,9 +24,9 @@ If that is the case, run:
 ```bash
 npm install --global --production windows-build-tools
 npm install --global node-gyp
-```*
+```
 
-*Note: node-java-bridge module must be able to find the javac.exe executable. JDK1.8 is recommended, 1.7 might work too. Point JAVA_HOME to JDK folder.
+Note: node-java-bridge module must be able to find the javac.exe executable. JDK1.8 is recommended, 1.7 might work too. Point JAVA_HOME to JDK folder.
 Also, the module checks the registry for java development kit. HKEY_LOCAL_MACHINE must have a JavaSoft key under SOFTWARES under which Java development Kit key must be present, which itself should contain a key with name similar to the version of JDK installed.
 So, for eg. the registry should look something like this:
 
