@@ -1,6 +1,7 @@
 var dao = require('./DbOperations');
 var logger = require('./Logs/Logger');
 var app = require('express')();
+var appConfig = require('./config/configuration').appConfig;
 
 var sql = 'select * from ag_test';
 
@@ -20,7 +21,10 @@ dao.initializeDB(function(err, success){
     logger.error('Database initialiation failed');
   } else {
     logger.info('Database initialized');
-    app.listen(3000);
-    logger.debug('Server listening on port 3000');
+    app.listen(appConfig.port, function (err) {
+      if (!err) {
+        logger.debug('Server listening on port ' + appConfig.port);
+      }
+    });
   }
 })

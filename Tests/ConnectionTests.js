@@ -8,11 +8,23 @@ dao.initializeDB(function(err, success){
     logger.error('Database initialiation failed');
   } else {
     logger.info('Database initialized');
-    SingleQueryTest();
+    // SingleQueryTest();
     // timedQueryTest(30);
     // ParameterizedQueryTest();
+    createTableTest();
   }
 })
+
+function createTableTest() {
+  var sql = "Create table Node_test(test string)";
+  dao.executeStatement(sql, function(err, updateCount) {
+    if (err) {
+      logger.error(err);
+    } else {
+      logger.debug(updateCount);
+    }
+  })
+}
 
 function timedQueryTest(intervalDurationInMinutes) {
   var sql = 'select * from ag_test';
@@ -32,14 +44,15 @@ function timedQueryTest(intervalDurationInMinutes) {
 }
 
 function SingleQueryTest() {
-  var sql = 'select count(*) as count from ag_test';
-  dao.executeQuery(sql, function(err, resultset) {
+  var sql = 'select 1 as test';
+  dao.executeOneResultQuery(sql, function(err, resultset) {
     if (err) {
       logger.error('Query Execution Failed at: '+Date());
       logger.error(err);
     } else {
       logger.info('Query exection succeeded at: '+ Date());
       logger.debug(resultset);
+      console.log(resultset);
     }
   });
 }
